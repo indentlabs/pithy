@@ -1,11 +1,24 @@
 #!/usr/bin/ruby
+# Usage:   ./pithy-key filename.txt
+# Options: 
+#         -o custom-dir/custom-name.pith     Saves the pithy key to a custom location
+
+require 'optparse'
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: #{$0} [options] <filename.txt>"
+
+  opts.on("-o", "--out key.pith", "Specify where to save the pithy key") do |key|
+    options[:key] = key
+  end
+end.parse!
+
 filename = ARGV.shift or begin
   puts "Error: No filename specified."
   puts "Usage:\n\t#{$0} <filename>"
   puts
   exit(1)
 end
-puts "filename : " + filename
 
 def tokenize(string)
   # TODO: test this with various tokenizing methods to see what gets the smallest size
@@ -17,16 +30,9 @@ def score(token)
   token.length
 end
 
-def token_map_sequence
-  %w(a b c d e f g h i j k l m n o p q r s t u v w x y z aa ab ac)
-end
-
 # Generate the key!
 token_scores = Hash.new(0)
-File.foreach(filename).with_index do |line, line_num|
-  puts "#{line_num}: #{line}"
-  puts "Tokens: #{tokenize(line).inspect}"
-
+File.foreach(filename) do |line|
   tokenize(line).each do |token|
     token_scores[token] += score(token)
   end
@@ -36,11 +42,11 @@ end
 sorted_tokens = token_scores.sort_by { |token, score| -score }
 
 # Print the ordered tokens to the keyfile
-File.open("#{filename}.pith", 'w') do |file|
+output_filename = options[:key] || "#{filename}.pith"
+File.open(output_filename, 'w') do |file|
   sorted_tokens.each do |token, score|
-    file.puts("#{token} #{score}")
+    file.puts token
   end
 end
 
-puts "Key file made!"
-puts sorted_tokens.inspect
+puts "Key file saved to ./#{output_filename}"
