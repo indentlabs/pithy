@@ -47,6 +47,7 @@ File.open(output_filename, 'w') do |output|
     tokenize(line).each do |token|
       output.write("#{bigify(token, translation_key)} ")
     end
+    output.puts
   end
 end
 
