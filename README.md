@@ -38,3 +38,7 @@ depithy.rb - Decompress a file given a pithy key
     Original filesize: 35481
     New filesize:      34106
     Increased by       -1375 (~-3% increase)
+
+## Example filesize reductions for various books
+
+placeholder
