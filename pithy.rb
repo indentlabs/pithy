@@ -1,6 +1,8 @@
 #!/usr/bin/ruby
 # Usage: ./pithy -k king.pith stephen-king-collection.txt
 
+require_relative 'lib/pithy.rb'
+
 require 'optparse'
 
 options = {}
@@ -30,26 +32,12 @@ unless options[:key]
   exit_with_usage_info
 end
 
-def token_map_sequence
-  # TODO: actually generate this, to N values (where N = keyfile line count)
-  %w(a b c d e f g h i j k l m n o p q r s t u v w x y z aa ab ac)
-end
-
-def tokenize(string)
-  # TODO: test this with various tokenizing methods to see what gets the smallest size
-  string.split(' ')
-end
-
-def minify(token)
-  $translation_key[token]
-end
-
 # Read the key and build a translation key from it
 pith_key = []
 File.foreach(options[:key]) do |line|
   pith_key.push(line.chop)
 end
-$translation_key = Hash[pith_key.zip(token_map_sequence.first(pith_key.length))]
+translation_key = Hash[pith_key.zip(token_map_sequence.first(pith_key.length))]
 
 # Open the output file
 output_filename = options[:out] || "minified-#{filename}"
@@ -57,7 +45,7 @@ File.open(output_filename, 'w') do |output|
   # Transform tokens line-by-line in the original file, spit them into output file
   File.foreach(filename) do |line|
     tokenize(line).each do |token|
-      output.write("#{minify(token)} ")
+      output.write("#{minify(token, translation_key)} ")
     end
   end
 end

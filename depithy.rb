@@ -1,6 +1,8 @@
 #!/usr/bin/ruby
 # Usage: ./depithy -k king.pith minified-file.txt -o bigified-file.txt
 
+require_relative 'lib/pithy.rb'
+
 require 'optparse'
 
 options = {}
@@ -30,26 +32,12 @@ unless options[:key]
   exit_with_usage_info
 end
 
-def tokenize(string)
-  # TODO: test this with various tokenizing methods to see what gets the smallest size
-  string.split(' ')
-end
-
-def bigify(token)
-  $translation_key[token]
-end
-
-def token_map_sequence
-  # TODO: actually generate this, to N values (where N = keyfile line count)
-  %w(a b c d e f g h i j k l m n o p q r s t u v w x y z aa ab ac)
-end
-
 # Read the key and build a translation key from it
 pith_key = []
 File.foreach(options[:key]) do |line|
   pith_key.push(line.chop)
 end
-$translation_key = Hash[token_map_sequence.first(pith_key.length).zip(pith_key)]
+translation_key = Hash[token_map_sequence.first(pith_key.length).zip(pith_key)]
 
 # Open the output file
 output_filename = options[:out] || "bigified-#{filename}"
@@ -57,7 +45,7 @@ File.open(output_filename, 'w') do |output|
   # Transform tokens line-by-line in the original file, spit them into output file
   File.foreach(filename) do |line|
     tokenize(line).each do |token|
-      output.write("#{bigify(token)} ")
+      output.write("#{bigify(token, translation_key)} ")
     end
   end
 end

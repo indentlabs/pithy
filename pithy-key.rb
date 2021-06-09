@@ -3,6 +3,8 @@
 # Options: 
 #         -o custom-dir/custom-name.pith     Saves the pithy key to a custom location
 
+require_relative 'lib/pithy.rb'
+
 require 'optparse'
 options = {}
 OptionParser.new do |opts|
@@ -18,16 +20,6 @@ filename = ARGV.shift or begin
   puts "Usage:\n\t#{$0} <filename>"
   puts
   exit(1)
-end
-
-def tokenize(string)
-  # TODO: test this with various tokenizing methods to see what gets the smallest size
-  string.split(' ')
-end
-
-def score(token)
-  # TODO: test this with a few scoring methods to see what gets the smallest size
-  token.length
 end
 
 # Generate the key!
