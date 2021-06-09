@@ -1,5 +1,5 @@
 # pithy
-Text compression
+Text compression scheme for plaintext/fiction
 
 ## Files
 
@@ -11,14 +11,14 @@ depithy.rb - Decompress a file given a pithy key
 
 ## Example compression --> decompression lifecycle
 
-1. Generate a domain-specific compression key
+**1. Generate a domain-specific compression key**
 
 ```
 $ ./pithy-key.rb books/aliceinwonderland.txt -o lewiscarroll.pith
 Key file saved to ./lewiscarroll.pith
 ```
 
-2. Compress a document with that key
+**2. Compress a document with that key**
 
 ```
 $ ./pithy.rb books/aliceinwonderland.txt -k lewiscarroll.pith -o minified-aiw.txt
@@ -31,7 +31,7 @@ To depithify it, don't forget you will need lewiscarroll.pith!
 $ ./depithy minified-aiw.txt -k lewiscarroll.pith
 ```
 
-3. Send your much-tinier file wherever you want!
+**3. Send your much-tinier file wherever you want!**
 
 ```
 $ tail -n 10 minified-aiw.txt
@@ -46,7 +46,7 @@ aOS
 Ri aWa
 ```
 
-4. Decompress the file back to its original
+**4. Decompress the file back to its original**
 
 ```
 $ ./depithy.rb -k lewiscarroll.pith minified-aiw.txt -o original-aiw.txt

@@ -42,3 +42,5 @@ File.open(output_filename, 'w') do |file|
 end
 
 puts "Key file saved to ./#{output_filename}"
+puts "\tUnique words: #{token_scores.keys.count}"
+puts "\tPithy score: #{token_scores.values.sum}"

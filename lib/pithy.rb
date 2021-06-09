@@ -41,6 +41,7 @@ def token_map_sequence
           
           else
             # If there are letters to the left to increment, we want to let the loop keep going
+            # (because it just keeps going to the left until it can increment and/or add an 'a')
 
           end
 
@@ -55,14 +56,6 @@ def token_map_sequence
       sequence << state
     end
   end
-end
-
-def minify(token, translation_key)
-  translation_key[token]
-end
-
-def bigify(token, translation_key)
-  translation_key[token]
 end
 
 def translate(token, translation_key)

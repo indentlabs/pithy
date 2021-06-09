@@ -44,10 +44,8 @@ output_filename = options[:out] || "minified-#{filename}"
 File.open(output_filename, 'w') do |output|
   # Transform tokens line-by-line in the original file, spit them into output file
   File.foreach(filename) do |line|
-    tokenize(line).each do |token|
-      output.write("#{minify(token, translation_key)} ")
-    end
-    output.puts
+    transformed_line = tokenize(line).map { |token| translate(token, translation_key) }
+    output.puts(transformed_line.join(' '))
   end
 end
 
