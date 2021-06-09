@@ -62,6 +62,8 @@ Increased by       73112 (~93% increase)
 
 `pithy-key` generates a pithy key (surprise!) tailored to your corpus. It ranks words by `length x frequency`
 to determine which words would most benefit from shortening, then outputs those words one-per-line as a key.
+Words that are longer and/or used more frequently occur sooner in the pithy key to ensure they get replaced
+by the shortest sequences, maximizing space gains in the compressed text.
 
 The ordering of words in this file maps onto the shortword sequence generator and therefore must be used for
 both compressing and decompressing files. 
