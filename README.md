@@ -1,14 +1,6 @@
 # pithy
 Text compression scheme for plaintext/fiction
 
-## Files
-
-pithy-key.rb - Generate an optimized pithy key for a file
-
-pithy.rb - Compress a file given a pithy key
-
-depithy.rb - Decompress a file given a pithy key
-
 ## Example compression --> decompression lifecycle
 
 **1. Generate a domain-specific compression key**
@@ -63,6 +55,33 @@ Original filesize: 77966
 New filesize:      151078
 Increased by       73112 (~93% increase)
 ```
+
+## Files
+
+### pithy-key
+
+`pithy-key` generates a pithy key (surprise!) tailored to your corpus. It ranks words by `length x frequency`
+to determine which words would most benefit from shortening, then outputs those words one-per-line as a key.
+
+The ordering of words in this file maps onto the shortword sequence generator and therefore must be used for
+both compressing and decompressing files. 
+
+You'll get the best compression rate by generating a key specific to the text you want to compress, but you
+may also choose to compress/decompress with the generic, standardized keys [provided in this repo](todo) to
+minimize the actual amount of data that flies over the wire.
+
+### pithy
+
+`pithy` compresses a file given a pithy key. Every word in the file is replaced with a shorter sequence of
+characters that deterministically maps onto the pithy key's word list. The end result is a lossless,
+unreadable document that can be downloaded or transferred faster, that can then be decompressed back into 
+the original text.
+
+### depithy
+
+`depithy` does the opposite of `pithy`; that is, it decompresses compressed text. Given a pithy key, it maps
+the shortcodes in the text back onto their original words and emits a copy of the original text in its
+original size.
 
 ## Example filesize reductions for various books
 
