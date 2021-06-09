@@ -6,7 +6,7 @@ Text compression scheme for plaintext/fiction
 **1. Generate a domain-specific compression key**
 
 ```
-$ ./pithy-key.rb books/aliceinwonderland.txt -o lewiscarroll.pith
+$ ./pithy-key books/aliceinwonderland.txt -o lewiscarroll.pith
 Key file saved to ./lewiscarroll.pith
 	Unique words: 5903
 	Pithy score: 119082
@@ -15,7 +15,7 @@ Key file saved to ./lewiscarroll.pith
 **2. Compress a document with that key**
 
 ```
-$ ./pithy.rb books/aliceinwonderland.txt -k lewiscarroll.pith -o minified-aiw.txt
+$ ./pithy books/aliceinwonderland.txt -k lewiscarroll.pith -o minified-aiw.txt
 File books/aliceinwonderland.txt is now pithy! Minified version saved to minified-aiw.txt
 Original filesize: 151079
 New filesize:      77966
@@ -49,7 +49,7 @@ SW
 **4. Decompress the file back to its original size and contents**
 
 ```
-$ ./depithy.rb -k lewiscarroll.pith minified-aiw.txt -o original-aiw.txt
+$ ./depithy -k lewiscarroll.pith minified-aiw.txt -o original-aiw.txt
 File minified-aiw.txt is no longer pithy! Bigified version saved to original-aiw.txt
 Original filesize: 77966
 New filesize:      151078
