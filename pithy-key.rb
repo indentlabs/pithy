@@ -25,7 +25,7 @@ end
 # Generate the key!
 token_scores = Hash.new(0)
 File.foreach(filename) do |line|
-  tokenize(line).each do |token|
+  tokenize(line).reject { |token| token == '' || token == "\n" }.each do |token|
     token_scores[token] += score(token)
   end
 end

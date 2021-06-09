@@ -1,6 +1,6 @@
 def tokenize(string)
   # TODO: test this with various tokenizing methods to see what gets the smallest size
-  string.split(' ')
+  string.split(/ /)
 end
 
 def score(token)

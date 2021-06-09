@@ -16,8 +16,8 @@ depithy.rb - Decompress a file given a pithy key
 ```
 $ ./pithy-key.rb books/aliceinwonderland.txt -o lewiscarroll.pith
 Key file saved to ./lewiscarroll.pith
-	Unique words: 5267
-	Pithy score: 116590
+	Unique words: 5903
+	Pithy score: 119082
 ```
 
 **2. Compress a document with that key**
@@ -26,8 +26,8 @@ Key file saved to ./lewiscarroll.pith
 $ ./pithy.rb books/aliceinwonderland.txt -k lewiscarroll.pith -o minified-aiw.txt
 File books/aliceinwonderland.txt is now pithy! Minified version saved to minified-aiw.txt
 Original filesize: 151079
-New filesize:      72450
-Decreased by       78629 (~52% reduction)
+New filesize:      85488
+Decreased by       65591 (~43% reduction)
 
 To depithify it, don't forget you will need lewiscarroll.pith!
 $ ./depithy minified-aiw.txt -k lewiscarroll.pith
@@ -35,33 +35,34 @@ $ ./depithy minified-aiw.txt -k lewiscarroll.pith
 
 **3. Send your much-tinier file wherever you want!**
 ```
-$ du -h books/aliceinwonderland.txt 
+$ du -h books/aliceinwonderland.txt
 148K	books/aliceinwonderland.txt
 $ du -h minified-aiw.txt 
-72K	minified-aiw.txt
+84K	minified-aiw.txt
 ```
 
 ```
 $ tail -n 10 minified-aiw.txt
-aON cZ u o aOO aEI a kq b aEJ PH g o 
-Rh b bO d C aEK x o bp k mm 
-b cd asS dH gV b zq n ge p lN aOP 
-da dW n a xR g qM g bB aUs b bO d 
-C ju n u W kq aiJ b dk p vl m u 
-W kq aOQ Kr o ma Ks b a aOR If 
-aOS 
+bau cV eh dA bav aPh r axF af aPi Ti cR dA
+UP af nk aI kc aPj tw dA GU da UQ
+af Os aBh NS apz af Aq hh PH bS aoC aPk
+cW aRs hh r yK cR UR cR zi bgv af nk aI
+kc ji hh eh Je axF aoT af dg bS vP dZ eh
+Je axF baw MJ dA lW MK af r bax aNk
+aPl
 
-Ri aWa
+US bij
+
 ```
 
-**4. Decompress the file back to its original**
+**4. Decompress the file back to its original size and contents**
 
 ```
 $ ./depithy.rb -k lewiscarroll.pith minified-aiw.txt -o original-aiw.txt
 File minified-aiw.txt is no longer pithy! Bigified version saved to original-aiw.txt
-Original filesize: 72450
-New filesize:      150492
-Increased by       78042 (~107% increase)
+Original filesize: 85488
+New filesize:      151078
+Increased by       65590 (~76% increase)
 ```
 
 ## Example filesize reductions for various books
