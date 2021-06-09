@@ -1,7 +1,7 @@
 # pithy
 Text compression scheme for plaintext/fiction
 
-## Example compression --> decompression lifecycle
+## Example compression --> uncompression lifecycle
 
 **1. Generate a domain-specific compression key**
 
@@ -46,7 +46,7 @@ SW
 :3 ]{
 ```
 
-**4. Decompress the file back to its original size and contents**
+**4. Uncompress the file back to its original size and contents**
 
 ```
 $ ./depithy -k lewiscarroll.pith minified-aiw.txt -o original-aiw.txt
@@ -66,24 +66,42 @@ Words that are longer and/or used more frequently occur sooner in the pithy key 
 by the shortest sequences, maximizing space gains in the compressed text.
 
 The ordering of words in this file maps onto the shortword sequence generator and therefore must be used for
-both compressing and decompressing files. 
+both compressing and uncompressing files. 
 
 You'll get the best compression rate by generating a key specific to the text you want to compress, but you
-may also choose to compress/decompress with the generic, standardized keys [provided in this repo](todo) to
+may also choose to compress/uncompress with the generic, standardized keys [provided in this repo](todo) to
 minimize the actual amount of data that flies over the wire.
+
+Available options:
+| flag | description |
+|--|--|
+| -o  / --out [filename] | Specify a path where you'd like the key to be saved. Defaults to the same directory as the corpus. |
 
 ### pithy
 
 `pithy` compresses a file given a pithy key. Every word in the file is replaced with a shorter sequence of
 characters that deterministically maps onto the pithy key's word list. The end result is a lossless,
-unreadable document that can be downloaded or transferred faster, that can then be decompressed back into 
+unreadable document that can be downloaded or transferred faster, that can then be uncompressed back into 
 the original text.
+
+Available options:
+| flag | description |
+|--|--|
+| -k  / --key [filename] | Specify a path to the pithy key to use. Required. |
+| -o  / --out [filename] | Specify a path where you'd like the compressed text to be saved. Defaults to the same directory as the corpus. |
+
 
 ### depithy
 
-`depithy` does the opposite of `pithy`; that is, it decompresses compressed text. Given a pithy key, it maps
+`depithy` does the opposite of `pithy`; that is, it uncompresses compressed text. Given a pithy key, it maps
 the shortcodes in the text back onto their original words and emits a copy of the original text in its
 original size.
+
+Available options:
+| flag | description |
+|--|--|
+| -k  / --key [filename] | Specify a path to the pithy key to use. Required. |
+| -o  / --out [filename] | Specify a path where you'd like the uncompressed text to be saved. Defaults to the same directory as the corpus. |
 
 ## Example filesize reductions for various books
 
