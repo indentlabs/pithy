@@ -16,6 +16,8 @@ depithy.rb - Decompress a file given a pithy key
 ```
 $ ./pithy-key.rb books/aliceinwonderland.txt -o lewiscarroll.pith
 Key file saved to ./lewiscarroll.pith
+	Unique words: 5267
+	Pithy score: 116590
 ```
 
 **2. Compress a document with that key**
@@ -24,14 +26,20 @@ Key file saved to ./lewiscarroll.pith
 $ ./pithy.rb books/aliceinwonderland.txt -k lewiscarroll.pith -o minified-aiw.txt
 File books/aliceinwonderland.txt is now pithy! Minified version saved to minified-aiw.txt
 Original filesize: 151079
-New filesize:      74943
-Decreased by       76136 (~50% reduction)
+New filesize:      72450
+Decreased by       78629 (~52% reduction)
 
 To depithify it, don't forget you will need lewiscarroll.pith!
 $ ./depithy minified-aiw.txt -k lewiscarroll.pith
 ```
 
 **3. Send your much-tinier file wherever you want!**
+```
+$ du -h books/aliceinwonderland.txt 
+148K	books/aliceinwonderland.txt
+$ du -h minified-aiw.txt 
+72K	minified-aiw.txt
+```
 
 ```
 $ tail -n 10 minified-aiw.txt
@@ -51,9 +59,9 @@ Ri aWa
 ```
 $ ./depithy.rb -k lewiscarroll.pith minified-aiw.txt -o original-aiw.txt
 File minified-aiw.txt is no longer pithy! Bigified version saved to original-aiw.txt
-Original filesize: 74943
-New filesize:      152985
-Increased by       78042 (~104% increase)
+Original filesize: 72450
+New filesize:      150492
+Increased by       78042 (~107% increase)
 ```
 
 ## Example filesize reductions for various books
