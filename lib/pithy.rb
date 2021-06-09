@@ -9,6 +9,9 @@ def score(token)
 end
 
 def token_map_sequence
+  lowest_ord  = 33
+  highest_ord = 127
+
   Enumerator.new do |sequence|
     state = ''
 
@@ -16,8 +19,8 @@ def token_map_sequence
       state = state.dup
 
       if state == ''
-        sequence << 'a'
-        state = 'a'
+        sequence << lowest_ord.chr
+        state = lowest_ord.chr
       end
 
       # Increment characters from the right-hand side first, carrying leftward
@@ -25,18 +28,14 @@ def token_map_sequence
       (state.length - 1).downto(0).each do |incrementing_position|
         val = state[incrementing_position]
 
-        case val
-        when 'z'
-          state[incrementing_position] = 'A'
-          break
-
-        when 'Z'
-          state[incrementing_position] = 'a'
+        case val.ord
+        when highest_ord
+          state[incrementing_position] = lowest_ord.chr
 
           # Perform a "carry" operation to the left
           if incrementing_position.zero?
             # We're as far left as we can go, so we want to just prepend an 'a'
-            state = 'a' + state
+            state = lowest_ord.chr + state
             break
           
           else

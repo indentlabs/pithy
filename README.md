@@ -26,8 +26,8 @@ Key file saved to ./lewiscarroll.pith
 $ ./pithy.rb books/aliceinwonderland.txt -k lewiscarroll.pith -o minified-aiw.txt
 File books/aliceinwonderland.txt is now pithy! Minified version saved to minified-aiw.txt
 Original filesize: 151079
-New filesize:      85488
-Decreased by       65591 (~43% reduction)
+New filesize:      77966
+Decreased by       73113 (~48% reduction)
 
 To depithify it, don't forget you will need lewiscarroll.pith!
 $ ./depithy minified-aiw.txt -k lewiscarroll.pith
@@ -38,21 +38,20 @@ $ ./depithy minified-aiw.txt -k lewiscarroll.pith
 $ du -h books/aliceinwonderland.txt
 148K	books/aliceinwonderland.txt
 $ du -h minified-aiw.txt 
-84K	minified-aiw.txt
+80K	minified-aiw.txt
 ```
 
 ```
-$ tail -n 10 minified-aiw.txt
-bau cV eh dA bav aPh r axF af aPi Ti cR dA
-UP af nk aI kc aPj tw dA GU da UQ
-af Os aBh NS apz af Aq hh PH bS aoC aPk
-cW aRs hh r yK cR UR cR zi bgv af nk aI
-kc ji hh eh Je axF aoT af dg bS vP dZ eh
-Je axF baw MJ dA lW MK af r bax aNk
-aPl
+$ $ tail -n 10 minified-aiw.txt
+Yb ". "n "M Yc SS 2 Iy Z ST 9: "* "M
+:0 Z 'j w &% SU +2 "M 2U "3 :1
+Z 6] Ks 6C EO Z .{ $L 7A !V D} SV
+"/ Tg $L 2 .' "* :2 "* .? \~ Z 'j w
+&% %V $L "n 3h Iy E/ Z "9 !V ,N "f "n
+3h Iy Yd 5e "M '( 5f Z 2 Ye RM
+SW
 
-US bij
-
+:3 ]{
 ```
 
 **4. Decompress the file back to its original size and contents**
@@ -60,9 +59,9 @@ US bij
 ```
 $ ./depithy.rb -k lewiscarroll.pith minified-aiw.txt -o original-aiw.txt
 File minified-aiw.txt is no longer pithy! Bigified version saved to original-aiw.txt
-Original filesize: 85488
+Original filesize: 77966
 New filesize:      151078
-Increased by       65590 (~76% increase)
+Increased by       73112 (~93% increase)
 ```
 
 ## Example filesize reductions for various books
