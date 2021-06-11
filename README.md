@@ -81,7 +81,7 @@ pithy-key
 
   Options:
     -o <path/to/file.pith>         Path where the key will be saved
-		                               [default: same as txt directory]
+                                   [default: same as txt directory]
 ```
 
 ### pithy
@@ -100,7 +100,7 @@ pithy
   Options:
     -k <path/to/file.pith>         Pith key to use for compression. Required.
     -o <path/to/output.txt>        Path where the compressed text will be saved
-		                               [default: same as txt directory]
+                                   [default: same as txt directory]
 ```
 
 ### depithy
@@ -119,7 +119,7 @@ depithy
   Options:
     -k <path/to/file.pith>         Pith key to use for uncompression. Required.
     -o <path/to/output.txt>        Path where the original, uncompressed text will be saved
-		                               [default: same as txt directory]
+                                   [default: same as txt directory]
 ```
 
 
