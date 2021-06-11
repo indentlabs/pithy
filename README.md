@@ -75,21 +75,14 @@ minimize the actual amount of data that flies over the wire.
 ```
 pithy-key
 
-	Usage:
-	  pithy-key books/aliceinwonderland.txt
-		pithy-key books/lewiscarroll/*.txt -o lewiscarroll.pith
-		thread-archiver <url>... [options]
-		thread-archiver -h | --help
-		thread-archiver -v | --version
+  Usage:
+    pithy-key books/aliceinwonderland.txt
+    pithy-key books/lewiscarroll/*.txt -o lewiscarroll.pith
 
-	Options:
-		-o <path/to/file.pith>         Path where the key will be saved [default: same as txt directory]
+  Options:
+    -o <path/to/file.pith>         Path where the key will be saved
+		                               [default: same as txt directory]
 ```
-
-Available options:
-| flag | description |
-|--|--|
-| -o  / --out [filename] | Specify a path where you'd like the key to be saved. Defaults to the same directory as the corpus. |
 
 ### pithy
 
@@ -98,12 +91,17 @@ characters that deterministically maps onto the pithy key's word list. The end r
 unreadable document that can be downloaded or transferred faster, that can then be uncompressed back into 
 the original text.
 
-Available options:
-| flag | description |
-|--|--|
-| -k  / --key [filename] | Specify a path to the pithy key to use. Required. |
-| -o  / --out [filename] | Specify a path where you'd like the compressed text to be saved. Defaults to the same directory as the corpus. |
+```
+pithy
 
+  Usage:
+    pithy books/aliceinwonderland.txt -k lewiscarroll.pith
+
+  Options:
+    -k <path/to/file.pith>         Pith key to use for compression. Required.
+    -o <path/to/output.txt>        Path where the compressed text will be saved
+		                               [default: same as txt directory]
+```
 
 ### depithy
 
@@ -111,14 +109,22 @@ Available options:
 the shortcodes in the text back onto their original words and emits a copy of the original text in its
 original size.
 
-Available options:
-| flag | description |
-|--|--|
-| -k  / --key [filename] | Specify a path to the pithy key to use. Required. |
-| -o  / --out [filename] | Specify a path where you'd like the uncompressed text to be saved. Defaults to the same directory as the corpus. |
+
+```
+depithy
+
+  Usage:
+    depithy compressed/aliceinwonderland.txt -k lewiscarroll.pith
+
+  Options:
+    -k <path/to/file.pith>         Pith key to use for uncompression. Required.
+    -o <path/to/output.txt>        Path where the original, uncompressed text will be saved
+		                               [default: same as txt directory]
+```
+
 
 ## Compression benchmarks for various books
 
-Book                 | Uncompressed | Pithy w/ key | Pithy with author key | Pithy with stdeng | gzip
----------------------|-------------:|-------------:|----------------------:|-------------------:-------:
-Alice in Wonderland  |       0 |   0      |   0               |  0            | 
+| Book                 | Uncompressed | Pithy w/ key | Pithy with author key | Pithy with stdeng | gzip  |
+|----------------------|--------------|--------------|-----------------------|-------------------|-------|
+| Alice in Wonderland  |            0 |       0      |       0               |  0                |       |
