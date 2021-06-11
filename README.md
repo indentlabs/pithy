@@ -72,6 +72,20 @@ You'll get the best compression rate by generating a key specific to the text yo
 may also choose to compress/uncompress with the generic, standardized keys [provided in this repo](todo) to
 minimize the actual amount of data that flies over the wire.
 
+```
+pithy-key
+
+	Usage:
+	  pithy-key books/aliceinwonderland.txt
+		pithy-key books/lewiscarroll/*.txt -o lewiscarroll.pith
+		thread-archiver <url>... [options]
+		thread-archiver -h | --help
+		thread-archiver -v | --version
+
+	Options:
+		-o <path/to/file.pith>         Path where the key will be saved [default: same as txt directory]
+```
+
 Available options:
 | flag | description |
 |--|--|
@@ -103,6 +117,8 @@ Available options:
 | -k  / --key [filename] | Specify a path to the pithy key to use. Required. |
 | -o  / --out [filename] | Specify a path where you'd like the uncompressed text to be saved. Defaults to the same directory as the corpus. |
 
-## Example filesize reductions for various books
+## Compression benchmarks for various books
 
-placeholder
+Book                 | Uncompressed | Pithy w/ key | Pithy with author key | Pithy with stdeng | gzip
+---------------------|-------------:|-------------:|----------------------:|-------------------:-------:
+Alice in Wonderland  |       0 |   0      |   0               |  0            | 
